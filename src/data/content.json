@@ -1,0 +1,31 @@
+{
+  "founders": [
+    "Yashwanth",
+    "Krishnaprasad",
+    "Pavan"
+  ],
+  "metrics": [
+    { "year": "2014", "label": "Founded" },
+    { "number": "50,000+", "label": "Lives Impacted" }
+  ],
+  "testimonials": [
+    {
+      "name": "Ramesh Patel",
+      "quote": "SUN Foundation didn't just change my daughter's life - they transformed our entire community."
+    },
+    {
+      "name": "Priya Sharma",
+      "quote": "Education has given me the tools and confidence to help my family. I am now studying medicine."
+    }
+  ],
+  "gallery": [
+    "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1974&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1618588507085-c79565432917?q=80&w=2127&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1509099836639-652a65fe28a7?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=2074&auto=format&fit=crop"
+  ]
+}
