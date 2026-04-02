@@ -2,7 +2,7 @@
 
 This repository contains the high-performance, ultra-lightweight web platform for the SUN Foundation. It was engineered from first principles to prioritize perfect Web Vitals, seamless micro-interactions, and a 0kb JavaScript animation budget.
 
-## 🚀 The Architecture (Why it is built this way)
+##  The Architecture (Why it is built this way)
 
 Traditional React Single Page Applications (SPAs) are notorious for massive initial JavaScript payloads and main-thread blocking animations. This project actively subverts those anti-patterns to deliver an elite user experience optimized for slower networks.
 
@@ -11,7 +11,7 @@ Traditional React Single Page Applications (SPAs) are notorious for massive init
 * **Native Scroll APIs:** The photo gallery utilizes a pure-CSS "Sticky Stack" mechanism (`position: sticky` with dynamic `top` offsets) to create a parallax-style card stacking effect without a single scroll-event listener.
 * **Backend integration:** Firebase Firestore is used as a lightweight, serverless NoSQL database to capture volunteer registrations.
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 * **Frontend:** React 18, Vite
 * **Routing:** React Router DOM v6
@@ -19,7 +19,7 @@ Traditional React Single Page Applications (SPAs) are notorious for massive init
 * **Database:** Firebase Firestore (Web SDK)
 * **Deployment:** Vercel
 
-## 📁 Project Structure
+##  Project Structure
 
 ```text
 src/
