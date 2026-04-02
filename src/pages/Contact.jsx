@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { db } from '../firebase';
+import { collection, addDoc } from 'firebase/firestore';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -8,15 +10,43 @@ const Contact = () => {
     city: '',
     interests: ''
   });
+  
+  // Adding a loading state for better UX
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Volunteer Payload:", formData);
-    alert("Application submitted successfully! Check console for payload.");
+    setIsSubmitting(true);
+
+    try {
+      // 1. Send the data to the "volunteers" collection in Firestore
+      await addDoc(collection(db, "volunteers"), {
+        ...formData,
+        submittedAt: new Date() // Always good to timestamp entries
+      });
+
+      // 2. Show success message
+      alert("Application submitted successfully! Welcome to the team.");
+      
+      // 3. Clear the form back to blank
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        city: '',
+        interests: ''
+      });
+      
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      alert("Something went wrong. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -34,7 +64,8 @@ const Contact = () => {
               required
               value={formData.firstName}
               onChange={handleChange}
-              className="bg-transparent border-b-2 border-slate-300 focus:border-orange-500 focus:outline-none py-2 text-indigo-950 transition-colors duration-300"
+              className="bg-transparent border-b-2 border-slate-300 focus:border-orange-500 focus:outline-none py-2 text-indigo-950 transition-colors duration-300 disabled:opacity-50"
+              disabled={isSubmitting}
             />
             <input 
               type="text" 
@@ -43,7 +74,8 @@ const Contact = () => {
               required
               value={formData.lastName}
               onChange={handleChange}
-              className="bg-transparent border-b-2 border-slate-300 focus:border-orange-500 focus:outline-none py-2 text-indigo-950 transition-colors duration-300"
+              className="bg-transparent border-b-2 border-slate-300 focus:border-orange-500 focus:outline-none py-2 text-indigo-950 transition-colors duration-300 disabled:opacity-50"
+              disabled={isSubmitting}
             />
           </div>
 
@@ -54,7 +86,8 @@ const Contact = () => {
             required
             value={formData.email}
             onChange={handleChange}
-            className="bg-transparent border-b-2 border-slate-300 focus:border-orange-500 focus:outline-none py-2 text-indigo-950 transition-colors duration-300"
+            className="bg-transparent border-b-2 border-slate-300 focus:border-orange-500 focus:outline-none py-2 text-indigo-950 transition-colors duration-300 disabled:opacity-50"
+            disabled={isSubmitting}
           />
 
           <input 
@@ -64,7 +97,8 @@ const Contact = () => {
             required
             value={formData.city}
             onChange={handleChange}
-            className="bg-transparent border-b-2 border-slate-300 focus:border-orange-500 focus:outline-none py-2 text-indigo-950 transition-colors duration-300"
+            className="bg-transparent border-b-2 border-slate-300 focus:border-orange-500 focus:outline-none py-2 text-indigo-950 transition-colors duration-300 disabled:opacity-50"
+            disabled={isSubmitting}
           />
 
           <textarea 
@@ -73,14 +107,16 @@ const Contact = () => {
             rows="3"
             value={formData.interests}
             onChange={handleChange}
-            className="bg-transparent border-b-2 border-slate-300 focus:border-orange-500 focus:outline-none py-2 text-indigo-950 transition-colors duration-300 resize-none"
+            className="bg-transparent border-b-2 border-slate-300 focus:border-orange-500 focus:outline-none py-2 text-indigo-950 transition-colors duration-300 resize-none disabled:opacity-50"
+            disabled={isSubmitting}
           ></textarea>
 
           <button 
             type="submit"
-            className="self-start mt-6 bg-indigo-950 text-white px-12 py-4 rounded-full font-bold tracking-widest uppercase hover:bg-orange-500 transition-colors duration-300 shadow-lg hover:shadow-orange-500/30"
+            disabled={isSubmitting}
+            className="self-start mt-6 bg-indigo-950 text-white px-12 py-4 rounded-full font-bold tracking-widest uppercase hover:bg-orange-500 transition-colors duration-300 shadow-lg hover:shadow-orange-500/30 disabled:bg-slate-400 disabled:cursor-not-allowed"
           >
-            Submit Application
+            {isSubmitting ? 'Submitting...' : 'Submit Application'}
           </button>
         </form>
       </div>
