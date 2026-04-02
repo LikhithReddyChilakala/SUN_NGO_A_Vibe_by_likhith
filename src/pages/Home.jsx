@@ -1,14 +1,21 @@
 import React from 'react';
 import QuietHero from '../components/QuietHero';
 import Testimonials from '../components/Testimonials';
+import Gallery from './Gallery';
+import Contact from './Contact';
 import content from '../data/content.json';
 
 const Home = () => {
   return (
     <div className="relative bg-indigo-950">
-      <QuietHero />
       
-      <div className="observe-theme relative z-10 bg-indigo-900 min-h-screen shadow-[0_-20px_50px_rgba(0,0,0,0.5)] pt-32 px-8" data-theme="dark">
+      {/* 1. The Hero (Pinned to the back) */}
+      <div id="hero" className="observe-theme sticky top-0 h-screen z-0" data-theme="dark">
+        <QuietHero />
+      </div>
+      
+      {/* 2. Our Story / Impact Grid (Slides over the Hero) */}
+      <div id="about" className="observe-theme relative z-10 bg-indigo-900 min-h-screen shadow-[0_-20px_50px_rgba(0,0,0,0.5)] pt-32 px-8" data-theme="dark">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-6xl font-light text-slate-50 mb-16 tracking-tight">Our Story.</h2>
           
@@ -35,6 +42,17 @@ const Home = () => {
           <Testimonials />
         </div>
       </div>
+
+      {/* 3. The Marquee Gallery */}
+      <div id="gallery" className="relative z-10">
+        <Gallery />
+      </div>
+
+      {/* 4. The Contact / Volunteer Form */}
+      <div id="contact" className="relative z-10">
+        <Contact />
+      </div>
+
     </div>
   );
 };
