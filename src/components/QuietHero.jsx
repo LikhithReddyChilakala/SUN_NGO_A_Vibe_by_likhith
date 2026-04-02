@@ -16,16 +16,20 @@ const QuietHero = () => {
           style={{
             backgroundImage: `url(${src})`,
             animation: `hero-fade 18s infinite ${index * 6}s`,
-            opacity: 0, 
+            opacity: 0, // This is fine, the 0% keyframe instantly forces it to 1
           }}
         />
       ))}
-      <div className="absolute inset-0 bg-indigo-950/40" />
+      
+      {/* Dark overlay to guarantee text contrast against bright photos */}
+      <div className="absolute inset-0 bg-indigo-950/50" />
+      
       <div className="absolute inset-0 flex flex-col justify-center items-center text-center z-10 p-4">
-        <h1 className="text-[clamp(3rem,8vw,8rem)] italic font-light text-white tracking-wide mix-blend-overlay">
-          SUN Foundation
+        {/* Changed text and removed the risky mix-blend-overlay */}
+        <h1 className="text-[clamp(3rem,6vw,7rem)] italic font-light text-white tracking-wide drop-shadow-lg">
+          Student Union for Nation
         </h1>
-        <p className="text-white/80 mt-4 text-xl tracking-[0.3em] uppercase">
+        <p className="text-orange-500 mt-6 text-xl md:text-2xl font-semibold tracking-[0.3em] uppercase drop-shadow-md">
           Empowering Communities
         </p>
       </div>
